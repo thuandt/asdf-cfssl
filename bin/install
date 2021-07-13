@@ -14,13 +14,16 @@ install_cfssl() {
   local bin_install_path="$install_path/bin"
 
   mkdir -p "${bin_install_path}"
-  echo "Installing cfssl..."
+  echo "Installing cfssl binary"
   chmod +x "${download_path}/cfssl"
   mv "${download_path}/cfssl" "${bin_install_path}/cfssl"
 
-  echo "Installing cfssljson..."
+  echo "Installing cfssljson binary"
   chmod +x "${download_path}/cfssljson"
   mv "${download_path}/cfssljson" "${bin_install_path}/cfssljson"
+
+  echo "Installation complete. For usage information run:"
+  echo "cfssl --help"
 }
 
 
