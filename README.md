@@ -49,13 +49,8 @@ install & manage versions.
 
 # Contributing
 
-Contributions of any kind welcome! See the [contributing guide](CONTRIBUTING.md).
+Contributions of any kind welcome! See the [contributing guide](CONTRIBUTING.md). Testing:
 
-
-### Notes
-
-- https://computingforgeeks.com/how-to-install-cloudflare-cfssl-on-linux-macos/
-- https://github.com/cloudflare/cfssl/releases
-- https://github.com/asdf-vm/asdf/blob/master/docs/plugins-create.md
-- https://github.com/asdf-vm/actions
-- https://github.com/asdf-vm/asdf-plugins
+```shell
+asdf plugin test cfssl https://github.com/mathew-fleisch/asdf-cfssl.git "cfssl version"
+```
