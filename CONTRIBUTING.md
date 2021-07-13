@@ -10,4 +10,4 @@ asdf plugin test cfssl https://github.com/mathew-fleisch/asdf-cfssl.git "cfssl v
 # Runtime: go1.12.12
 ```
 
-Tests are automatically run in GitHub Actions on push and PR.
+Tests are automatically run in GitHub Actions on push and PR and on a nightly cron.
