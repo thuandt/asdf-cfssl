@@ -40,7 +40,7 @@ asdf install cfssl latest
 # Set a version globally (on your ~/.tool-versions file)
 asdf global cfssl latest
 
-# Now cfssl commands are available
+# Now cfssl/cfssljson commands are available
 cfssl --help
 ```
 
