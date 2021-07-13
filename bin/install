@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+set -o pipefail
+
+ASDF_INSTALL_TYPE=${ASDF_INSTALL_TYPE:-version}
+TMPDIR=${TMPDIR:-/tmp}
+[ -n "$ASDF_INSTALL_VERSION" ] || (>&2 echo 'Missing ASDF_INSTALL_VERSION' && exit 1)
+[ -n "$ASDF_INSTALL_PATH" ] || (>&2 echo 'Missing ASDF_INSTALL_PATH' && exit 1)
+
+install_cfssl() {
+  # local install_type=$1           # not currently used
+  local version=$2
+  local install_path=$3
+  local bin_install_path="$install_path/bin"
+  local os_version; os_version=$(uname | tr '[:upper:]' '[:lower:]')
+
+  mkdir -p "${bin_install_path}"
+
+  local cfssl_tool; cfssl_tool="$(get_download_url "$version" "$os_version" "cfssl")"
+  echo "Downloading cfssl from ${cfssl_tool}"
+  curl -sSL "$cfssl_tool" -o "${bin_install_path}/cfssl"
+  chmod +x "${bin_install_path}/cfssl"
+
+  local cfssljson_tool; cfssljson_tool="$(get_download_url "$version" "$os_version" "cfssljson")"
+  echo "Downloading cfssljson from ${cfssljson_tool}"
+  curl -sSL "$cfssljson_tool" -o "${bin_install_path}/cfssljson"
+  chmod +x "${bin_install_path}/cfssljson"
+}
+
+
+get_download_url() {
+  local version="$1"
+  local os_version="$2"
+  local tool_name="$3"
+  echo "https://github.com/cloudflare/cfssl/releases/download/v${version}/${tool_name}_${version}_${os_version}_amd64"
+}
+
+install_cfssl "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
