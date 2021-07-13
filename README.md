@@ -54,3 +54,7 @@ Contributions of any kind welcome! See the [contributing guide](CONTRIBUTING.md)
 ```shell
 asdf plugin test cfssl https://github.com/mathew-fleisch/asdf-cfssl.git "cfssl version"
 ```
+
+# License
+
+See [LICENSE](LICENSE) © [Mathew Fleisch](https://github.com/mathew-fleisch/)
