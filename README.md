@@ -25,7 +25,7 @@ Plugin:
 ```shell
 asdf plugin add cfssl
 # or
-asdf plugin add https://github.com/mathew-fleisch/asdf-cfssl.git
+asdf plugin add cfssl https://github.com/mathew-fleisch/asdf-cfssl.git
 ```
 
 cfssl:
