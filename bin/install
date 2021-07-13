@@ -16,7 +16,7 @@ install_cfssl() {
   local os_version; os_version=$(uname | tr '[:upper:]' '[:lower:]')
 
   mkdir -p "${bin_install_path}"
-
+  echo "https://github.com/cloudflare/cfssl"
   local cfssl_tool; cfssl_tool="$(get_download_url "$version" "$os_version" "cfssl")"
   echo "Downloading cfssl from ${cfssl_tool}"
   curl -sSL "$cfssl_tool" -o "${bin_install_path}/cfssl"

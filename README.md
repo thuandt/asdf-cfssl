@@ -2,7 +2,7 @@
 
 # asdf-cfssl ![Build](https://github.com/mathew-fleisch/asdf-cfssl/workflows/Build/badge.svg) ![Lint](https://github.com/mathew-fleisch/asdf-cfssl/workflows/Lint/badge.svg)
 
-[cfssl](https://github.com/mathew-fleisch/asdf-cfssl) plugin for the [asdf version manager](https://asdf-vm.com).
+[cfssl](https://github.com/cloudflare/cfssl) [plugin](https://github.com/mathew-fleisch/asdf-cfssl) for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -17,8 +17,6 @@
 
 - bash
 - curl
-- tar
-- unzip
 
 # Install
 
