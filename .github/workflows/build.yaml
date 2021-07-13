@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        cli-version: ['1.5.0', '1.6.0']
+        cli-version: ['1.6.0']
     runs-on: ${{ matrix.os }}
     steps:
       - name: asdf_plugin_test
