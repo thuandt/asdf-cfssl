@@ -3,27 +3,26 @@
 set -e
 set -o pipefail
 
-[ -n "$ASDF_INSTALL_VERSION" ] || (>&2 echo 'Missing ASDF_INSTALL_VERSION' && exit 1)
-[ -n "$ASDF_DOWNLOAD_PATH" ] || (>&2 echo 'Missing ASDF_DOWNLOAD_PATH' && exit 1)
+[ -n "$ASDF_INSTALL_VERSION" ] || (echo >&2 'Missing ASDF_INSTALL_VERSION' && exit 1)
+[ -n "$ASDF_DOWNLOAD_PATH" ] || (echo >&2 'Missing ASDF_DOWNLOAD_PATH' && exit 1)
 
 download_cfssl() {
   local version=$1
   local download_path=$2
-  local os_version; os_version=$(uname | tr '[:upper:]' '[:lower:]')
+  local os_version
+  os_version=$(uname | tr '[:upper:]' '[:lower:]')
+  local cfssl_tools=(cfssl cfssljson cfssl-bundle cfssl-certinfo cfssl-newkey cfssl-scan mkbundle multirootca)
 
   mkdir -p "${download_path}"
   echo "https://github.com/cloudflare/cfssl"
-  local cfssl_tool; cfssl_tool="$(get_download_url "$version" "$os_version" "cfssl")"
-  echo "Downloading cfssl from ${cfssl_tool}"
-  curl -sSL "$cfssl_tool" -o "${download_path}/cfssl"
-  chmod +x "${download_path}/cfssl"
-
-  local cfssljson_tool; cfssljson_tool="$(get_download_url "$version" "$os_version" "cfssljson")"
-  echo "Downloading cfssljson from ${cfssljson_tool}"
-  curl -sSL "$cfssljson_tool" -o "${download_path}/cfssljson"
-  chmod +x "${download_path}/cfssljson"
+  for tool in "${cfssl_tools[@]}"; do
+    local cfssl_tool
+    cfssl_tool="$(get_download_url "$version" "$os_version" "$tool")"
+    echo "Downloading ${tool} from ${cfssl_tool}"
+    curl -sSL "$cfssl_tool" -o "${download_path}/${tool}"
+    chmod +x "${download_path}/${tool}"
+  done
 }
-
 
 get_download_url() {
   local version="$1"
